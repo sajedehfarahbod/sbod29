@@ -1,3 +1,6 @@
+#access_key = None
+#secret_key = None
+
 import os
 
 import boto3
