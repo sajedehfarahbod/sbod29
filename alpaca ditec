@@ -1,0 +1,28 @@
+path: '/content/gdrive/My Drive/ComputerVisionDeveloper/TrainYolov8CustomDataset/data' # dataset root dir
+train: images/train  # train images (relative to 'path')
+val: images/train  # val images (relative to 'path')
+
+# Classes
+names:
+  0: alpaca
+.....
+from google.colab import drive
+
+drive.mount('/content/gdrive')
+
+ROOT_DIR = '/content/gdrive/My Drive/ComputerVisionDeveloper/TrainYolov8CustomDataset'
+
+!pip install ultralytics
+
+import os
+
+from ultralytics import YOLO
+
+
+# Load a model
+model = YOLO("yolov8n.yaml")  # build a new model from scratch
+
+# Use the model
+results = model.train(data=os.path.join(ROOT_DIR, "google_colab_config.yaml"), epochs=1)  # train the model
+
+!scp -r /content/runs '/content/gdrive/My Drive/ComputerVisionDeveloper/TrainYolov8CustomDataset'
